@@ -1,0 +1,137 @@
+.dashtop {
+    -fx-padding: 10 10 10 10;
+    -fx-background-color: white;
+}
+
+.app-name {
+    -fx-padding: 10 10 10 10;
+}
+
+.action-view {
+    -fx-translate-y: 80;
+}
+
+.action-view .left-layer {
+    -fx-padding: 20 20 20 20;
+    -fx-alignment: center;
+}
+
+.action-view .right-layer {
+    -fx-padding: 20 20 20 20;
+    -fx-alignment: center-right;
+}
+
+.action-view .right-layer .button {
+    -fx-font: 16 aria;
+    -fx-outline: none;
+    -fx-background-color: #0096FF;
+    -fx-text-fill: #ffffff;
+}
+
+/* Body content view */
+.body-content-view {
+    -fx-translate-y: 90;
+}
+
+.text-area {
+    -fx-background-color: rgb(240, 240, 240);
+}
+
+.text-area .content {
+    -fx-background-color: rgb(240, 240, 240);
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.text-area:focused .content {
+	-fx-background-color: rgb(240, 240, 240);
+	-fx-background-insets: 0;
+	-fx-background-radius: 0;
+}
+
+/* styling list view */
+
+.list-view {
+    -fx-background-color: #f0f0f0;
+}
+
+.list-view .list-cell {
+    -fx-background-color: white;
+    -fx-border-color: lightgray;
+    -fx-border-width: 0 0 0 4px;
+    -fx-padding: 2px;
+}
+
+.list-view .list-cell:filled:selected {
+    -fx-background-color: #039ED3;
+    -fx-text-fill: white;
+}
+
+.list-view .list-cell:filled:selected:focused {
+    -fx-background-color: #0096FF;;
+}
+
+.list-view .list-cell:filled:hover {
+    -fx-background-color: #f4f4f4;
+}
+
+/* list view scroll bar */
+.scroll-bar:vertical {
+    -fx-background-color: rgb(240, 240, 240); /* Your desired background color */
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgb(190, 190, 190); /* Your desired thumb color */
+}
+
+.scroll-bar:vertical {
+    -fx-pref-width: 15px; /* Your desired width */
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-opacity: 0; /* Hide the buttons */
+}
+
+/* Date picker */
+.date-picker {
+    -fx-border-color: rgb(240, 240, 240); /* Your desired border color */
+    -fx-border-width: 1px; /* Your desired border width */
+    -fx-border-radius: 4px; /* Your desired border radius */
+    -fx-background-color: rgb(240, 240, 240); /* Your desired background color */
+    -fx-padding: 5px; /* Your desired padding */
+}
+
+.date-picker > .text-field {
+    -fx-text-fill: black; /* Your desired text color */
+    -fx-font-size: 14px; /* Your desired font size */
+    -fx-background-color: rgb(240, 240, 240); /* Your desired background color */
+}
+
+/* Combo box */
+.combo-box-base {
+    -fx-border-color: rgb(240, 240, 240); /* Your desired border color */
+    -fx-border-width: 1px; /* Your desired border width */
+    -fx-border-radius: 4px; /* Your desired border radius */
+    -fx-padding: 5px;
+    -fx-background-color: rgb(240, 240, 240); /* Your desired background color */
+}
+
+.combo-box-base > .text-field {
+    -fx-text-fill: black; /* Your desired text color */
+    -fx-font-size: 14px; /* Your desired font size */
+    -fx-background-color: rgb(240, 240, 240); /* Your desired background color */
+}
+
+/* progress bar */
+.progress-bar {
+    -fx-padding: 5px;
+}
+
+.progress-bar .track {
+    -fx-background-color: white;
+}
+
+.progress-bar .bar {
+    -fx-background-color: #0096FF;
+}
