@@ -26,6 +26,14 @@ public class Agenda {
         this.deadline = deadline;
     }
 
+    public void resetAgenda() {
+        id = "";
+        title = "";
+        description = "";
+        category = "";
+        deadline = null;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -64,5 +72,16 @@ public class Agenda {
 
     public LocalDate getDeadline() {
         return deadline;
+    }
+
+    @Override
+    public String toString() {
+        return "Agenda{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", deadline=" + deadline +
+                '}';
     }
 }

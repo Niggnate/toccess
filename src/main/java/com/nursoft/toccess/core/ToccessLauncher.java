@@ -7,6 +7,7 @@ import com.nursoft.toccess.core.impl.ScreenFactory;
 import com.nursoft.toccess.core.interfaces.IToccessLauncher;
 import com.nursoft.toccess.core.models.impl.StorageManager;
 
+import com.nursoft.toccess.views.layout.CreateAgendaScreen;
 import com.nursoft.toccess.views.layout.DashtopScreen;
 
 import javafx.application.Application;
@@ -33,10 +34,10 @@ public class ToccessLauncher extends Application implements IToccessLauncher {
     private static ScreenFactory screenFactory;
 
     private DashtopScreen dashtopScreen;
+    private CreateAgendaScreen createAgendaScreen;
 
     @Override
     public void init() throws Exception {
-        super.init();
         storageManager = StorageManager.getInstance();
         storageManager.collectRecords();
 
@@ -54,6 +55,12 @@ public class ToccessLauncher extends Application implements IToccessLauncher {
         dashtopScreen = new DashtopScreen();
         dashtopScreen.setPrefWidth(bounds.getWidth());
         dashtopScreen.setPrefHeight(bounds.getHeight());
+
+        createAgendaScreen = new CreateAgendaScreen();
+        createAgendaScreen.setPrefWidth(bounds.getWidth());
+        createAgendaScreen.setPrefHeight(bounds.getHeight());
+
+        simulateDisplayTasks();
     }
 
     @Override
@@ -64,6 +71,7 @@ public class ToccessLauncher extends Application implements IToccessLauncher {
         final Scene scene = createScene(screenFactory.getPrefWidth(), screenFactory.getPrefHeight());
 
         screenFactory.loadScreen(DASHTOP_LOCATOR, dashtopScreen);
+        screenFactory.loadScreen(CREATE_AGENDA_LOCATOR, createAgendaScreen);
 
         // Set screen
         screenFactory.setScreen(DASHTOP_LOCATOR);
@@ -88,8 +96,7 @@ public class ToccessLauncher extends Application implements IToccessLauncher {
 
     @Override
     public void stop() throws Exception {
-        super.stop();
-//        storageManager.storeRecords();
+        storageManager.storeRecords();
     }
 
     private static Scene createScene(double width, double height) {

@@ -54,9 +54,7 @@ public class AgendaView extends HBox {
         title.setText(agenda.getTitle());
         description.setText(agenda.getDescription());
         category.setText(agenda.getCategory());
-//        deadline.setText(Utils.transformDate(agenda.getDeadline()));
-        deadline.setText(agenda.getDeadline().toString());
-        System.out.println(agenda.getDeadline());
+        deadline.setText(Utils.transformDate(agenda.getDeadline()));
 
         // Size init
         double size_each = (Resolutions.newInstance().getBounds16by9(RATIO).getWidth() / NUMBER_OF_CHILDREN) - PADDING_SIZE;
@@ -91,4 +89,7 @@ public class AgendaView extends HBox {
         deadline.setStyle("-fx-font: 13 aria;");
     }
 
+    public Agenda getAgenda() {
+        return agenda;
+    }
 }

@@ -18,12 +18,14 @@ public class BodyContentView extends VBox implements IControlView {
     private StackPane stateBox;
     private ActionView actionView;
     private DashtopScreen dashtopScreen;
+    private BorderPane emptyBorderPane;
 
     public BodyContentView(DashtopScreen dashtopScreen, ActionView actionView) {
         super();
         this.dashtopScreen = dashtopScreen;
         this.actionView = actionView;
         stateBox = new StackPane();
+        emptyBorderPane = new BorderPane();
         buildLayout();
         cascadeStyling();
         checkAvailability();
@@ -88,9 +90,9 @@ public class BodyContentView extends VBox implements IControlView {
         emptyListContainer.getChildren().addAll(emptyListIcon, emptyListLabel);
         emptyListContainer.setAlignment(Pos.CENTER);
 
-        final BorderPane borderPane = new BorderPane();
-        borderPane.setCenter(emptyListContainer);
+        emptyBorderPane.setCenter(emptyListContainer);
+        emptyBorderPane.setStyle("-fx-background-color: white;");
 
-        return borderPane;
+        return emptyBorderPane;
     }
 }

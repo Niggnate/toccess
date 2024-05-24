@@ -1,10 +1,13 @@
 package com.nursoft.toccess.views.layout;
 
+import com.nursoft.toccess.core.enums.ScreenLocator;
 import com.nursoft.toccess.core.impl.ScreenFactory;
+import com.nursoft.toccess.core.models.AgendaView;
 import com.nursoft.toccess.core.view.Screen;
 import com.nursoft.toccess.views.controls.BodyView;
 import com.nursoft.toccess.views.controls.HeaderView;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -59,12 +62,16 @@ public class DashtopScreen extends Screen {
     public void actionEventSetters() {
 
         // Action View
-        bodyView.getActionView().getCreateAgendaButton().setOnAction(this::actionEventListeners);
-        bodyView.getActionView().getDeleteSelectedAgendaButton().setOnAction(this::actionEventListeners);
+        getThisCreateAgendaButton().setOnAction(this::actionEventListeners);
+        getThisDeleteButton().setOnAction(this::actionEventListeners);
     }
 
-    public Button getDeleteButton() {
+    public Button getThisDeleteButton() {
         return bodyView.getActionView().getDeleteSelectedAgendaButton();
+    }
+
+    public Button getThisCreateAgendaButton() {
+        return bodyView.getActionView().getCreateAgendaButton();
     }
 
     public BodyView getBodyView() {
@@ -73,6 +80,20 @@ public class DashtopScreen extends Screen {
 
     @Override
     public void actionEventListeners(ActionEvent event) {
+        if (event.getSource() == getThisCreateAgendaButton()) {
+            factory.setScreen(ScreenLocator.CREATE_AGENDA);
+        } else if (event.getSource() == getThisDeleteButton()) {
+            deleteSelectedAgenda();
+        }
+    }
 
+    private void deleteSelectedAgenda() {
+        final ObservableList<AgendaView> selected = getStorageManager().getMainListView().getSelectionModel().getSelectedItems();
+        for (AgendaView view: selected) {
+            String selectedID = view.getAgenda().getId();
+            getStorageManager().getObservableDataList().removeIf(item -> item.getId().equals(selectedID));
+        }
+        getStorageManager().getObservableDataViewList().removeAll(selected);
+        getStorageManager().getMainListView().getSelectionModel().clearSelection();
     }
 }

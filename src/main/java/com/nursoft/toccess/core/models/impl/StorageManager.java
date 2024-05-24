@@ -47,7 +47,7 @@ public final class StorageManager extends AbstractStorageManager {
                         s,
                         agenda.getCategory(),
                         s,
-                        agenda.getDeadline()
+                        agenda.getDeadline().format(getFormatter())
                 ));
                 bw.newLine();
             }

@@ -2,6 +2,7 @@ package com.nursoft.toccess.core.helpers;
 
 import com.nursoft.toccess.core.controls.icons.GraphicBuddy;
 import com.nursoft.toccess.core.controls.icons.enums.GraphicBuddyIcon;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.StackPane;
 
 import java.io.File;
@@ -30,7 +31,9 @@ public class Utils {
         LocalDate currentDate = LocalDate.now();
         Period period = Period.between(currentDate, targetDate);
         long days = ChronoUnit.DAYS.between(currentDate, targetDate);
+        long months = ChronoUnit.MONTHS.between(currentDate, targetDate);
 
+        // Days
         if (days == 0) {
             return "Due Today";
         } else if (days == 1) {
@@ -43,8 +46,19 @@ public class Utils {
                 return String.format("Due in %d week", weeks);
             }
             return String.format("Due in %d weeks", weeks);
+        } else if (days == -1) {
+            return "It was due yesterday";
+        } else if (days == -2) {
+            return "It was due day before yesterday";
+
+
+        // Months
+        } else if (months == 0) {
+            return "Due this month";
+        } else if (months == 1) {
+            return "Due next month";
         } else {
-            return "";
+            return currentDate.toString();
         }
     }
 
@@ -75,5 +89,19 @@ public class Utils {
                 return GraphicBuddy.getGraphics(GraphicBuddyIcon.CATEGORY, "#0096FF", width, height);
             }
         }
+    }
+
+    public static void showAlert(Alert.AlertType type, String title, String headerTitle) {
+        final Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(headerTitle);
+        alert.showAndWait();
+    }
+
+    public static Alert showAndWaitAlert(Alert.AlertType type, String title, String headerTitle) {
+        final Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(headerTitle);
+        return alert;
     }
 }
