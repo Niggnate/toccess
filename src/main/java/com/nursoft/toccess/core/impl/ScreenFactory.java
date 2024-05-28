@@ -1,5 +1,6 @@
 package com.nursoft.toccess.core.impl;
 
+import com.nursoft.toccess.controllers.exceptions.KeyNotFoundException;
 import com.nursoft.toccess.core.enums.ScreenLocator;
 import com.nursoft.toccess.core.interfaces.IScreenFactoryView;
 import javafx.scene.Node;
@@ -15,7 +16,11 @@ public class ScreenFactory extends AbstractScreenFactory {
     }
 
     public Node getScreen(ScreenLocator locator) {
-        return getScreens().get(locator);
+        try {
+            return getScreens().get(locator);
+        } catch (KeyNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -43,25 +48,25 @@ public class ScreenFactory extends AbstractScreenFactory {
     public void setScreen(final ScreenLocator locator) {
         boolean screenSet = false;
 
-        if (getScreens().get(locator) != null) {
-            if (getChildren().isEmpty()) {
-                getChildren().add(getScreens().get(locator));
+        try {
+            if (getScreens().get(locator) != null) {
+                if (getChildren().isEmpty()) {
+                    getChildren().add(getScreens().get(locator));
+                } else {
+                    getChildren().removeFirst();
+                    getChildren().addFirst(getScreens().get(locator));
+                }
+                screenSet = true;
             } else {
-                getChildren().removeFirst();
-                getChildren().addFirst(getScreens().get(locator));
+                System.out.println("Something went wrong when viewing the screen!!!");
             }
-            screenSet = true;
-        } else {
-            System.out.println("Something went wrong when viewing the screen!!!");
+        } catch (KeyNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @Override
-    public boolean removeScreen(final ScreenLocator locator) {
-        if (getScreens().remove(locator) == null) {
-            System.out.println("Ops!!! It seems that screen does not exits.");
-            return false;
-        }
-        return true;
+    public void removeScreen(final ScreenLocator locator) throws KeyNotFoundException {
+        getScreens().remove(locator);
     }
 }

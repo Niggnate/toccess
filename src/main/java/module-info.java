@@ -6,5 +6,6 @@ module com.nursoft.toccess {
 
     opens com.nursoft.toccess to javafx.fxml;
     exports com.nursoft.toccess;
+    exports com.nursoft.toccess.controllers.exceptions;
     exports com.nursoft.toccess.core;
 }

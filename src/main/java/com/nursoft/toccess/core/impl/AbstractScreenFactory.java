@@ -1,5 +1,6 @@
 package com.nursoft.toccess.core.impl;
 
+import com.nursoft.toccess.controllers.Dictionary;
 import com.nursoft.toccess.core.enums.ScreenLocator;
 import com.nursoft.toccess.core.interfaces.IScreenFactory;
 
@@ -16,11 +17,11 @@ import java.util.HashMap;
 
 public abstract class AbstractScreenFactory extends StackPane implements IScreenFactory {
 
-    private final HashMap<ScreenLocator, Node> screens;
+    private final Dictionary<ScreenLocator, Node> screens;
 
     public AbstractScreenFactory() {
         super();
-        screens = new HashMap<>();
+        screens = new Dictionary<>();
         dataViewInitialize();
     }
 
@@ -53,7 +54,7 @@ public abstract class AbstractScreenFactory extends StackPane implements IScreen
     }
 
 
-    public HashMap<ScreenLocator, Node> getScreens() {
+    public Dictionary<ScreenLocator, Node> getScreens() {
         return screens;
     }
 }
